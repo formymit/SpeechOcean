@@ -1,5 +1,4 @@
-#!usr/bin/env python3.6  
-#-*- coding:utf-8 -*-  
+#-*- coding:utf-8 -*-
 """ 
 @author:iBoy 
 @file: arabic_spider.py 
@@ -10,7 +9,7 @@ from lxml import etree
 import multiprocessing
 from Download import request
 
-from day01.Arabic.mongodb_queue import MongoQueue
+from mongodb_queue import MongoQueue
 
 # from pyquery import PyQuery as pq
 
@@ -58,7 +57,7 @@ def getData(url):
     title = all_titles[0].xpath('string(.)')
     title = title.strip()
 
-    print(title+ url)
+    # print(title+ url)
 
     #get review
     sum_review = ''
@@ -108,7 +107,7 @@ def getData(url):
             'type': 'news'
         }
 
-        # print(info)
+        print(info)
 
         file.write(str(info) + '\n')
 
@@ -118,7 +117,7 @@ def process_crawler():
     process= []
     # num_cpus = multiprocessing.cpu_count()
     # print('将启动进程数为: ', num_cpus)
-    for i in range(30):
+    for i in range(40):
         p = multiprocessing.Process(target=SingleProcessSpider)
         p.start()
         process.append(p)
