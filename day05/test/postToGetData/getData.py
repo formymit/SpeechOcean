@@ -18,7 +18,7 @@ headers = {
 }
 
 url = 'http://www.sonin.mn/content/page'
-spider_queue = MongoQueue('mongolia', 'news02')
+spider_queue = MongoQueue('mongolia', 'news_politics')
 
 
 def infoCrawler():
@@ -37,8 +37,8 @@ def infoCrawler():
 def getDataF1(page_id):
     data = {
         'page_id':page_id, #"1",
-        'catgegory_id':"9",
-        'slug':"easy-page"
+        'catgegory_id':"1",#"8",#"9",
+        'slug':"politics-economy",#"sport",#"easy-page"
     }
 
     response = requests.post(url, data=data)
@@ -53,14 +53,14 @@ def getDataF1(page_id):
         href = all_href[i]
         href = 'http://www.sonin.mn' + href
         print(title + ', ' + href)
-        with open('easy_page_urls.txt', 'a') as f:
+        with open('sport_urls.txt', 'a') as f:
             f.write(href + '\n')
 
 def process_crawler():
     process= []
     # num_cpus = multiprocessing.cpu_count()
     # print('将启动进程数为: ', num_cpus)
-    for i in range(30):
+    for i in range(40):
         p = multiprocessing.Process(target=infoCrawler)
         p.start()
         process.append(p)

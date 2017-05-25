@@ -7,9 +7,9 @@
 """
 from mongodb_queue import MongoQueue
 
-spider_queue = MongoQueue('mongolia', 'news02')
+spider_queue = MongoQueue('mongolia', 'news_politics')
 
-for i in range(546):
+for i in range(5485):
     spider_queue.push(i)
 
 # with open('urls.txt') as f:
