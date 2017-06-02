@@ -39,6 +39,8 @@ def infoCrawler():
 def getData(url):
     title = ''
     try:
+        descriptions = ''
+
         response = requests.get(url, headers=headers)
 
         # print(response.encoding)
@@ -59,7 +61,6 @@ def getData(url):
         # print(title)
         # print(time)
 
-        descriptions = ''
         for each in all_description:
             description = each.xpath('string(.)')
             descriptions = descriptions + description
@@ -70,7 +71,7 @@ def getData(url):
         print(result)
 
         if len(title) > 1: #there exist data
-            with open('mongoliaData.txt', 'a') as file:
+            with open('mongoliaData03.txt', 'a') as file:
 
                 file.write(result + '\n')
 
@@ -94,6 +95,10 @@ def process_crawler():
 if __name__ == "__main__":
     process_crawler()
 
+    # getData('http://www.mgyxw.net/am/2016/12/12/U_9378_438169.html?pid=1991')
+    # getData('http://www.mgyxw.net/am/2015/7/9/8955_226137.html?pid=1473')
+    # getData('http://www.nmg.xinhuanet.com/mg/')
+
 # getData(url)
 #
 # with open('test_urls', 'r') as f:
@@ -103,4 +108,7 @@ if __name__ == "__main__":
 #         print(url)
 #         getData(url)
 #         time.sleep(1)
+
+
+
 #         url = f.readline()
